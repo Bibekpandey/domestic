@@ -35,7 +35,7 @@ TOP_LIMIT = 7
 
 @api_view(['GET'])
 def identity(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return Response({}, status=status.STATUS_401_UNAUTHORIZED)
     serializer = UserSerializer(request.user)
     return Response(serializer.data)
@@ -45,7 +45,7 @@ class IndexPage(View):
     context = {}
 
     def get(self, request):
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             return redirect('login')
         return render(request, 'expenses/index.html', self.context)
 
@@ -321,7 +321,7 @@ def removeuser(request):
 
 
 def login(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return render(request, "expenses/login.html", {})
     else:
         return redirect('index')

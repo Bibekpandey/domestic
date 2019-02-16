@@ -14,9 +14,6 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PASSWORD = "jtpl"
-WEBHOOK_SCRIPT_PATH = '/home/janaki/mytest.sh'
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -37,7 +34,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = "dcf12e1e439b0f9e7c8029a4f4532190"
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "743587407842-db3vflqng9hf6j3nqq78781s0stkc4ih.apps.googleusercontent.com"
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '8dsGCWh_wAT2TRvs3n7xDbF6'
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "http://localhost:4000/"
 
 SOCIAL_AUTH_PIPELINE = [
     'social.pipeline.social_auth.social_details',
@@ -139,6 +136,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        # 'jwt_auth.authentication.JwtAuthentication',
+    ),
+}
 
 
 # Internationalization

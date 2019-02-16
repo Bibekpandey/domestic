@@ -8,3 +8,5 @@ db.sqlite3
 manage.py
 wsgi.py
 tags
+node_modules/
+dist/
