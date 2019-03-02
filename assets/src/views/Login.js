@@ -1,5 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
+
+import {
+    loginAction,
+} from '#redux';
+
+/*
+import {
+    authenticatedSelector,
+} from '#selectors';
+*/
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -12,6 +25,11 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { googleLoginUrl } from '../config/variables';
 
 import FormInput from '../utils/FormInput';
+
+import { tokenUrl } from '../config/urls';
+import request from '../utils/request';
+import { urlParamsToObject } from '../utils/common';
+
 
 const styles = theme => ({
     main: {
@@ -45,6 +63,9 @@ const styles = theme => ({
     },
 });
 
+const GOOGLE_TOKEN_URL = 'http://localhost:8000/token/google/';
+
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -60,9 +81,39 @@ class Login extends React.Component {
         };
     }
 
+    componentDidMount() {
+        // eslint-disable-next-line no-undef
+        const query = window.location.search;
+        const queryObj = urlParamsToObject(query);
+        if (Object.keys(queryObj).length === 0) {
+            return;
+        }
+        // login to server
+        request.post(
+            GOOGLE_TOKEN_URL,
+            queryObj,
+            this.postSocialLogin,
+        );
+    }
+
+    postSocialLogin = (data) => {
+        const { login } = this.props;
+        login(data);
+        // THEN redirect to home page
+    }
+
     setFormValues = (formVals) => {
         const formValues = formVals;
         this.setState({ formValues });
+    }
+
+    handleLogin = () => {
+        const { formValues: loginParams } = this.state;
+        request.post(
+            tokenUrl,
+            loginParams,
+            () => { },
+        );
     }
 
     render() {
@@ -86,7 +137,7 @@ class Login extends React.Component {
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
                         />
-                        <a href={googleLoginUrl} >
+                        <a href={googleLoginUrl}>
                             <Button
                                 type="button"
                                 fullWidth
@@ -100,7 +151,7 @@ class Login extends React.Component {
                             fullWidth
                             variant="contained"
                             color="primary"
-                            onClick={() => { alert();}}
+                            onClick={this.handleLogin}
                         >
                             Sign in
                         </Button>
@@ -116,4 +167,15 @@ Login.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Login);
+const mapDispatchToProps = dispatch => ({
+    login: authData => dispatch(loginAction(authData)),
+});
+
+const mapStateToProps = state => ({
+    // authenticated: authenticatedSelector(state),
+    // lastNotify: lastNotifySelector(state),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+    withStyles(styles)(Login)
+);

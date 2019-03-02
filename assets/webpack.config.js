@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -9,6 +10,7 @@ module.exports = {
         publicPath: '/',
         sourceMapFilename: 'sourcemaps/[file].map',
     },
+    devtool: 'eval-source-map',
     module: {
         rules: [
             {
@@ -38,6 +40,13 @@ module.exports = {
         historyApiFallback: true,
     },
     plugins: [
+        /*
+        new webpack.DefinePlugin({
+            'process.env': {
+                API_URL: 'http://localhost:8000',
+            },
+        }),
+        */
         new HtmlWebpackPlugin({
             template: './index.html',
             filename: './index.html',
