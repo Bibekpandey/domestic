@@ -34,7 +34,38 @@ SOCIAL_AUTH_FACEBOOK_SECRET = "dcf12e1e439b0f9e7c8029a4f4532190"
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "743587407842-db3vflqng9hf6j3nqq78781s0stkc4ih.apps.googleusercontent.com"
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '8dsGCWh_wAT2TRvs3n7xDbF6'
 
-LOGIN_REDIRECT_URL = "http://localhost:4000/"
+GOOGLE_CLIENT_ID = "743587407842-db3vflqng9hf6j3nqq78781s0stkc4ih.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = '8dsGCWh_wAT2TRvs3n7xDbF6'
+GOOGLE_AUTH_URI = 'https://www.googleapis.com/oauth2/v4/token'
+
+SOCIAL_LOGIN_REDIRECT_URL = "http://localhost:4000/login"
+
+
+# CORS CONFIGS
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'contenttype',
+    'mode',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)
 
 SOCIAL_AUTH_PIPELINE = [
     'social.pipeline.social_auth.social_details',
@@ -62,11 +93,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
+    'corsheaders',
+
+    'user',
     'expenses',
     'rest_framework',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from django.utils import timezone
 
+
 class Organization(models.Model):
     name = models.CharField(max_length=100)
     owner = models.OneToOneField('AppUser', blank=True, null=True, on_delete=models.CASCADE)
@@ -11,16 +12,20 @@ class Organization(models.Model):
     def __str__(self):
         return '{}'.format(self.name)
 
+
 class AppUser(User):
     address = models.CharField(max_length=100, blank=True, null=True)
     occupation = models.CharField(max_length=100, blank=True, null=True)
     organizations = models.ManyToManyField(Organization, null=True, related_name="users")
-    has_setup = models.BooleanField(default=False) # means user has set up for individual or organizational record
+
+    # means user has set up for individual or organizational record
+    has_setup = models.BooleanField(default=False)
 
 
 class CategoryManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_deleted=False)
+
 
 class Category(models.Model):
     objects = models.Manager()
@@ -48,15 +53,17 @@ class ItemsManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_deleted=False)
 
+
 class Item(models.Model):
     objects = models.Manager()
     valid_objects = ItemsManager()
 
     name = models.CharField(max_length=50)
     category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
-    organization = models.ForeignKey(Organization, related_name='items', on_delete=models.CASCADE)
+    organization = models.ForeignKey(
+        Organization, related_name='items', on_delete=models.CASCADE)
     uses = models.IntegerField(default=0)
-    description = models.CharField(max_length=1000,blank=True)
+    description = models.CharField(max_length=1000, blank=True)
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
