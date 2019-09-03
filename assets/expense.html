@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>I Spent</title>
+        <link href="https://fonts.googleapis.com/css?family=Titillium Web" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <style>
+            body {
+                height: 100vh;
+                width: 100vw;
+                overflow: hidden;
+                font-family: 'Lato';
+            }
+
+            .font-titilium { font-family: 'Titillium Web'; }
+            .font-montserrat { font-family: 'Montserrat'; }
+            .font-shrikhand { font-family: 'Shrikhand'; }
+
+            #main {
+                color: white;
+            }
+
+            #navbar, #footer {
+                height: 5vh;
+                width: 100vw;
+                /*border: dashed 1px blue;*/
+            }
+
+            #content{
+                height: 90vh;
+            }
+
+            ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+               font-size: 25px; 
+            }
+            ::-moz-placeholder { /* Firefox 19+ */
+               font-size: 25px; 
+            }
+
+            input[type=number] {
+                -moz-appearance:textfield;
+            }
+
+            .amount-input {
+                padding-left: 35px;
+            }
+
+            input {
+                margin-top: 10px;
+            }
+
+            .input-text{ 
+                margin-top: 10px;
+                position: absolute;
+                padding: 10px; 
+                min-width: 40px; 
+                margin-right: -30px;
+                color: #777;
+            } 
+
+        </style>
+    </head>
+    <body class="bg-black-seaweed">
+        <div id="main" class="flex-col-center">
+            <div id="navbar" class="flex-row-center">
+                <div class="font-chivo font-largest color-caviar">
+                    EXPENSES
+                </div>
+                <div class="width-25-vw"></div>
+                <div class="width-25-vw"></div>
+                <div class="width-25-vw"></div>
+            </div>
+            <div id="content" class="flex-col-center">
+                <span class="font-montserrat font-larger color-avocado"> Today, I spent </span>
+                <form>
+                    <i class="input-text">Rs.</i>
+                    <input class="borderless border-radius-large input-large amount-input" type="number" />
+                </form>
+
+                <span class="font-montserrat font-large color-avocado"> On </span>
+
+                <form>
+                    <input class="borderless border-radius-large input-large" type="text" placeholder="Pizza"/>
+                </form>
+                <button class="width-100-px padding-10 borderless border-radius-large bg-salmon color-white" type="button"> Add </button>
+            </div>
+            <div id="footer"></div>
+        </div>
+    </body>
+</html>
