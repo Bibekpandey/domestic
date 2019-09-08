@@ -1,12 +1,21 @@
 /* COLORS GROUPED BY THEMES */
 
+:root {
+    --primary-bg-color: #231b12;
+    --highlight-color: #f77604;
+    --text-color: #b8d20b;
+}
+
 /* THEME neon night */
 .color-white { color: white; }
+
 .color-caviar { color: #f77604; }  /* orange like */
 .bg-caviar { background-color: #f77604; }
+.border-caviar { border-color: #f77604; }
 
 .color-avocado { color: #b8d20b; }
 .bg-avocado { background-color: #b8d20b; }
+.border-avocado { border-color: #b8d20b; }
 
 .color-salmon { color: #f56c57; }
 .bg-salmon { background-color: #f56c57; }
@@ -14,6 +23,8 @@
 .color-black-seaweed { color: #231b12; }
 .bg-black-seaweed { background-color: #231b12; }
 /* THEME END */
+
+.bg-transparent { background-color: transparent; }
 
 
 .color-tangerine{
@@ -79,6 +90,10 @@
 /* BORDER */
 .borderless {
     border: none;
+}
+.border-bottom {
+    border: none;
+    border-bottom: solid 1px;
 }
 
 .border-radius-large{

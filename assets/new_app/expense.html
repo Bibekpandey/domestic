@@ -2,8 +2,8 @@
     <head>
         <title>I Spent</title>
         <link href="https://fonts.googleapis.com/css?family=Titillium Web" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Chivo" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="styles.css">
         <style>
             body {
@@ -14,8 +14,8 @@
             }
 
             .font-titilium { font-family: 'Titillium Web'; }
-            .font-montserrat { font-family: 'Montserrat'; }
-            .font-shrikhand { font-family: 'Shrikhand'; }
+            .font-Lato { font-family: 'Lato'; }
+            .font-chivo { font-family: 'Chivo'; }
 
             #main {
                 color: white;
@@ -43,21 +43,44 @@
             }
 
             .amount-input {
-                padding-left: 35px;
+                text-align: center;
+                width: 175px;
+                font-size: 50px;
+                font-weight: 900;
+                border: none;
+                border-bottom: solid 1px;
+                border-color: #f77604;
+            }
+
+            .items-input {
+                text-align: center;
+                font-size: 40px;
+            }
+
+            .border-bottom-primary {
+                border: none;
+                border-bottom: solid 1px;
+                border-color: #f77604;
             }
 
             input {
                 margin-top: 10px;
             }
 
-            .input-text{ 
+            .input-text { 
                 margin-top: 10px;
-                position: absolute;
                 padding: 10px; 
+                font-size: 40px;
                 min-width: 40px; 
-                margin-right: -30px;
-                color: #777;
             } 
+
+            #main-canvas {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                background-color: var(--primary-bg-color);
+                z-index: -1;
+            }
 
         </style>
     </head>
@@ -74,18 +97,40 @@
             <div id="content" class="flex-col-center">
                 <span class="font-montserrat font-larger color-avocado"> Today, I spent </span>
                 <form>
-                    <i class="input-text">Rs.</i>
-                    <input class="borderless border-radius-large input-large amount-input" type="number" />
+                    <!-- <i class="input-text font-lato color-caviar"> Rs. </i> -->
+                    <input class="amount-input bg-transparent font-lato color-caviar" type="number" autofocus />
                 </form>
 
                 <span class="font-montserrat font-large color-avocado"> On </span>
 
                 <form>
-                    <input class="borderless border-radius-large input-large" type="text" placeholder="Pizza"/>
+                    <input class="bg-transparent border-bottom-primary items-input color-caviar" type="text" placeholder="Pizza, Momo"/>
                 </form>
                 <button class="width-100-px padding-10 borderless border-radius-large bg-salmon color-white" type="button"> Add </button>
             </div>
             <div id="footer"></div>
         </div>
     </body>
+
+    <script type="text/javascript" src="elements.js"></script>
+    <script type="text/javascript" src="animation.js"></script>
+    <script>
+        // TODO: on resize event
+        // dynamically create canvas element
+        const bodyHeight = document.body.clientHeight;
+        const bodyWidth = document.body.clientWidth;
+
+        let canvas = document.createElement('canvas');
+        canvas.setAttribute('width', `${bodyWidth}`);
+        canvas.setAttribute('height', `${bodyHeight}`);
+        canvas.id = 'main-canvas';
+        document.body.appendChild(canvas)
+        canvas = document.getElementById('main-canvas');
+
+        const ctx = canvas.getContext('2d');
+        const fps = 60;
+        const elements = [];
+        const animation = new Animation(ctx, elements, fps);
+        animation.run();
+    </script>
 </html>
