@@ -4,6 +4,7 @@
         <link href="https://fonts.googleapis.com/css?family=Titillium Web" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Chivo" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.typekit.net/ejj2zrc.css">
         <link rel="stylesheet" type="text/css" href="styles.css">
         <style>
             body {
@@ -14,8 +15,9 @@
             }
 
             .font-titilium { font-family: 'Titillium Web'; }
-            .font-Lato { font-family: 'Lato'; }
+            .font-lato { font-family: 'Lato'; }
             .font-chivo { font-family: 'Chivo'; }
+            .font-cooper { font-family: cooper-black-std, serif; }
 
             #main {
                 color: white;
@@ -82,17 +84,55 @@
                 z-index: -1;
             }
 
+            #add-button {
+                border-color: var(--secondary-highlight-color);
+                background-color: transparent;
+                border-width: 1px;
+                border-radius: 2px;
+                color: var(--secondary-highlight-color);
+
+                -o-transition:.9s;
+                -ms-transition:.9s;
+                -moz-transition:.9s;
+                -webkit-transition:.9s;
+                /* ...and now for the proper property */
+                transition:.9s;
+            }
+
+            #add-button:hover {
+                border-color: var(--primary-bg-color);
+                border-width: 1px;
+                color: white;
+                background-color: var(--secondary-highlight-color);
+
+                -o-transition:.9s;
+                -ms-transition:.9s;
+                -moz-transition:.9s;
+                -webkit-transition:.9s;
+                /* ...and now for the proper property */
+                transition:.9s;
+            }
+
+            #brand-name {
+                margin-top: 10vh;
+                padding: 5px;
+                padding-left: 12px;
+                padding-right: 12px;
+                border: solid 3px var(--highlight-color);
+                border-radius: 2px;
+            }
         </style>
     </head>
     <body class="bg-black-seaweed">
         <div id="main" class="flex-col-center">
             <div id="navbar" class="flex-row-center">
-                <div class="font-chivo font-largest color-caviar">
+                <div class="width-20-vw"></div>
+                <div class="width-20-vw"></div>
+                <div id="brand-name" class="font-cooper font-largest color-caviar">
                     EXPENSES
                 </div>
-                <div class="width-25-vw"></div>
-                <div class="width-25-vw"></div>
-                <div class="width-25-vw"></div>
+                <div class="width-20-vw"></div>
+                <div class="width-20-vw"></div>
             </div>
             <div id="content" class="flex-col-center">
                 <span class="font-montserrat font-larger color-avocado"> Today, I spent </span>
@@ -106,7 +146,7 @@
                 <form>
                     <input class="bg-transparent border-bottom-primary items-input color-caviar" type="text" placeholder="Pizza, Momo"/>
                 </form>
-                <button class="width-100-px padding-10 borderless border-radius-large bg-salmon color-white" type="button"> Add </button>
+                <button id="add-button" class="padding-10 margin-top-20 width-100-px" type="button"> <b class="font-smaller"> Add </b> </button>
             </div>
             <div id="footer"></div>
         </div>

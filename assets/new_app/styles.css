@@ -4,6 +4,7 @@
     --primary-bg-color: #231b12;
     --highlight-color: #f77604;
     --text-color: #b8d20b;
+    --secondary-highlight-color: #f56c57;
 }
 
 /* THEME neon night */
@@ -19,6 +20,7 @@
 
 .color-salmon { color: #f56c57; }
 .bg-salmon { background-color: #f56c57; }
+.border-salmon { border-color: #f56c57; }
 
 .color-black-seaweed { color: #231b12; }
 .bg-black-seaweed { background-color: #231b12; }
@@ -47,6 +49,7 @@
 /* WIDTH */
 .width-10-vw { width: 10vw; }
 .width-25-vw { width: 25vw; }
+.width-20-vw { width: 20vw; }
 .width-50-vw { width: 50vw; }
 .width-75-vw { width: 75vw; }
 
@@ -109,6 +112,20 @@
 .input-large {
     height: 3em;
     padding: 0.5em;
+}
+
+/* MARGIN */
+.margin-top-50 {
+    margin-top: 50px;
+}
+.margin-top-30 {
+    margin-top: 30px;
+}
+.margin-top-20 {
+    margin-top: 20px;
+}
+.margin-top-10 {
+    margin-top: 10px;
 }
 
 /* PADDING */

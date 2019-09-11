@@ -1,4 +1,4 @@
-const MAX_ELEMENTS = 200;
+const MAX_ELEMENTS = 250;
 const TICK_FACTOR = 3;
 
 class Animation {
