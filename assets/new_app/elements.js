@@ -23,7 +23,7 @@ function ColorLuminance(hex, lum) {
 
 const HIGHLIGHT_COLOR = getComputedStyle(document.body).getPropertyValue('--highlight-color');
 const TEXT_COLOR = getComputedStyle(document.body).getPropertyValue('--text-color');
-const LIGHTER_HIGHLIGHT = ColorLuminance(HIGHLIGHT_COLOR, -0.5);
+const LIGHTER_HIGHLIGHT = ColorLuminance(HIGHLIGHT_COLOR, -0.4);
 
 
 class Circle {

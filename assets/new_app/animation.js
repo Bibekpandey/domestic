@@ -2,15 +2,17 @@ const MAX_ELEMENTS = 250;
 const TICK_FACTOR = 3;
 
 class Animation {
-    constructor(ctx, elements, fps) {
-        this.ctx = ctx;
+    constructor(canvas, elements, fps) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
         var style = getComputedStyle(document.body);
         this.clearColor = style.getPropertyValue('--primary-bg-color');
         this.fps = fps;
-        this.width = ctx.canvas.width;
-        this.height = ctx.canvas.height;
+        this.width = canvas.width;
+        this.height = canvas.height;
         this.elements = elements;
         this.tick = 0;
+        this.timeout = null;
 
         this.update = this.update.bind(this);
         this.render = this.render.bind(this);
@@ -43,6 +45,6 @@ class Animation {
             this.render();
         }
         this.tick += 1;
-        setTimeout(this.run, 1000 / this.fps);
+        this.timeout = setTimeout(this.run, 1000 / this.fps);
     }
 }

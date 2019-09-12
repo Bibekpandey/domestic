@@ -1,0 +1,111 @@
+body {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        font-family: 'Lato';
+    }
+
+.font-titilium { font-family: 'Titillium Web'; }
+.font-lato { font-family: 'Lato'; }
+.font-chivo { font-family: 'Chivo'; }
+.font-cooper { font-family: cooper-black-std, serif; }
+.font-serif { font-family: serif; }
+
+#main {
+    color: white;
+}
+
+#navbar, #footer {
+    /*border: dashed 1px blue;*/
+}
+
+#content{
+    height: 90vh;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: 25px; 
+}
+::-moz-placeholder { /* Firefox 19+ */
+    font-size: 25px; 
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.amount-input {
+    text-align: center;
+    width: 175px;
+    font-size: 50px;
+    font-weight: 900;
+    border: none;
+    border-bottom: solid 1px;
+    border-color: #f77604;
+}
+
+.items-input {
+    text-align: center;
+    font-size: 40px;
+}
+
+.border-bottom-primary {
+    border: none;
+    border-bottom: solid 1px;
+    border-color: #f77604;
+}
+
+input {
+    margin-top: 10px;
+}
+
+.input-text { 
+    margin-top: 10px;
+    padding: 10px; 
+    font-size: 40px;
+    min-width: 40px; 
+} 
+
+#main-canvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: var(--primary-bg-color);
+    z-index: -1;
+}
+
+#add-button {
+    border-color: var(--secondary-highlight-color);
+    background-color: transparent;
+    border-width: 1px;
+    border-radius: 2px;
+    color: var(--secondary-highlight-color);
+
+    -o-transition:.9s;
+    -ms-transition:.9s;
+    -moz-transition:.9s;
+    -webkit-transition:.9s;
+    /* ...and now for the proper property */
+    transition:.9s;
+}
+
+#add-button:hover {
+    border-color: var(--primary-bg-color);
+    border-width: 1px;
+    color: white;
+    background-color: var(--secondary-highlight-color);
+
+    -o-transition:.9s;
+    -ms-transition:.9s;
+    -moz-transition:.9s;
+    -webkit-transition:.9s;
+    /* ...and now for the proper property */
+    transition:.9s;
+}
+
+#brand-name {
+    padding: 5px 18px 5px 18px;
+    margin-top: 3vh;
+    border: solid 3px var(--highlight-color);
+    border-radius: 2px;
+}

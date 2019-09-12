@@ -6,129 +6,14 @@
         <link href="https://fonts.googleapis.com/css?family=Chivo" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/ejj2zrc.css">
         <link rel="stylesheet" type="text/css" href="styles.css">
-        <style>
-            body {
-                height: 100vh;
-                width: 100vw;
-                overflow: hidden;
-                font-family: 'Lato';
-            }
-
-            .font-titilium { font-family: 'Titillium Web'; }
-            .font-lato { font-family: 'Lato'; }
-            .font-chivo { font-family: 'Chivo'; }
-            .font-cooper { font-family: cooper-black-std, serif; }
-
-            #main {
-                color: white;
-            }
-
-            #navbar, #footer {
-                height: 5vh;
-                width: 100vw;
-                /*border: dashed 1px blue;*/
-            }
-
-            #content{
-                height: 90vh;
-            }
-
-            ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-               font-size: 25px; 
-            }
-            ::-moz-placeholder { /* Firefox 19+ */
-               font-size: 25px; 
-            }
-
-            input[type=number] {
-                -moz-appearance:textfield;
-            }
-
-            .amount-input {
-                text-align: center;
-                width: 175px;
-                font-size: 50px;
-                font-weight: 900;
-                border: none;
-                border-bottom: solid 1px;
-                border-color: #f77604;
-            }
-
-            .items-input {
-                text-align: center;
-                font-size: 40px;
-            }
-
-            .border-bottom-primary {
-                border: none;
-                border-bottom: solid 1px;
-                border-color: #f77604;
-            }
-
-            input {
-                margin-top: 10px;
-            }
-
-            .input-text { 
-                margin-top: 10px;
-                padding: 10px; 
-                font-size: 40px;
-                min-width: 40px; 
-            } 
-
-            #main-canvas {
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                background-color: var(--primary-bg-color);
-                z-index: -1;
-            }
-
-            #add-button {
-                border-color: var(--secondary-highlight-color);
-                background-color: transparent;
-                border-width: 1px;
-                border-radius: 2px;
-                color: var(--secondary-highlight-color);
-
-                -o-transition:.9s;
-                -ms-transition:.9s;
-                -moz-transition:.9s;
-                -webkit-transition:.9s;
-                /* ...and now for the proper property */
-                transition:.9s;
-            }
-
-            #add-button:hover {
-                border-color: var(--primary-bg-color);
-                border-width: 1px;
-                color: white;
-                background-color: var(--secondary-highlight-color);
-
-                -o-transition:.9s;
-                -ms-transition:.9s;
-                -moz-transition:.9s;
-                -webkit-transition:.9s;
-                /* ...and now for the proper property */
-                transition:.9s;
-            }
-
-            #brand-name {
-                margin-top: 10vh;
-                padding: 5px;
-                padding-left: 12px;
-                padding-right: 12px;
-                border: solid 3px var(--highlight-color);
-                border-radius: 2px;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="expenses.css">
     </head>
     <body class="bg-black-seaweed">
         <div id="main" class="flex-col-center">
             <div id="navbar" class="flex-row-center">
                 <div class="width-20-vw"></div>
                 <div class="width-20-vw"></div>
-                <div id="brand-name" class="font-cooper font-largest color-caviar">
+                <div id="brand-name" class="font-serif font-largest color-caviar">
                     EXPENSES
                 </div>
                 <div class="width-20-vw"></div>
@@ -146,7 +31,7 @@
                 <form>
                     <input class="bg-transparent border-bottom-primary items-input color-caviar" type="text" placeholder="Pizza, Momo"/>
                 </form>
-                <button id="add-button" class="padding-10 margin-top-20 width-100-px" type="button"> <b class="font-smaller"> Add </b> </button>
+                <button id="add-button" class="padding-10 margin-top-20 width-100-px" type="button"> <span class="font-smaller font-bold"> Add </span> </button>
             </div>
             <div id="footer"></div>
         </div>
@@ -155,22 +40,36 @@
     <script type="text/javascript" src="elements.js"></script>
     <script type="text/javascript" src="animation.js"></script>
     <script>
-        // TODO: on resize event
-        // dynamically create canvas element
-        const bodyHeight = document.body.clientHeight;
-        const bodyWidth = document.body.clientWidth;
+        function createCanvas() {
+            const bodyHeight = document.body.clientHeight;
+            const bodyWidth = document.body.clientWidth;
+            let canvas = document.createElement('canvas');
+            canvas.setAttribute('width', `${bodyWidth}`);
+            canvas.setAttribute('height', `${bodyHeight}`);
+            canvas.id = 'main-canvas';
+            return canvas;
+        }
 
-        let canvas = document.createElement('canvas');
-        canvas.setAttribute('width', `${bodyWidth}`);
-        canvas.setAttribute('height', `${bodyHeight}`);
-        canvas.id = 'main-canvas';
+        let canvas = createCanvas();
         document.body.appendChild(canvas)
-        canvas = document.getElementById('main-canvas');
 
-        const ctx = canvas.getContext('2d');
         const fps = 60;
         const elements = [];
-        const animation = new Animation(ctx, elements, fps);
+        let animation = new Animation(canvas, elements, fps);
         animation.run();
+
+        window.addEventListener('resize', () => {
+            const old_elements = animation.elements;
+
+            document.body.removeChild(canvas);
+            canvas = createCanvas();
+            document.body.appendChild(canvas);
+
+            clearTimeout(animation.timeout);
+
+            animation = new Animation(canvas, old_elements, fps);
+            animation.run();
+            
+        });
     </script>
 </html>
