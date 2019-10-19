@@ -14,9 +14,12 @@ class Organization(models.Model):
 
 
 class AppUser(User):
+    user = models.OneToOneField(User, parent_link=True, on_delete=models.CASCADE)
     address = models.CharField(max_length=100, blank=True, null=True)
     occupation = models.CharField(max_length=100, blank=True, null=True)
     organizations = models.ManyToManyField(Organization, null=True, related_name="users")
+
+    google_id = models.TextField()
 
     # means user has set up for individual or organizational record
     has_setup = models.BooleanField(default=False)
@@ -77,6 +80,7 @@ class Item(models.Model):
 class ExpenseManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_deleted=False)
+
 
 class Expense(models.Model):
     objects = models.Manager()

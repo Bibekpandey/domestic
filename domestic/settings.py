@@ -24,7 +24,7 @@ SECRET_KEY = 'q$22-ra)vn9=(3k_zcc1byj6^!lpve_m%$)n9p-re%$=ue#21g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 SOCIAL_AUTH_USER_MODEL = 'expenses.AppUser'
 SOCIAL_AUTH_ALWAYS_ASSOCIATE = True
